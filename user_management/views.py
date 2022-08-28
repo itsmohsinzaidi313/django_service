@@ -51,21 +51,26 @@ def get_data(request: HttpRequest) -> JsonResponse:
 
 
 def view_users(request: WSGIRequest) -> HTTPResponse:
-    client = utils.get_restaurant_db_client()
-    db = utils.get_restaurants_database(client)
-    users_collection = utils.get_users_collection(db)
-    cursor = users_collection.find(projection={"_id": 0})
+    e: BaseException
+    try:
+        client = utils.get_restaurant_db_client()
+        db = utils.get_restaurants_database(client)
+        users_collection = utils.get_users_collection(db)
+        cursor = users_collection.find(projection={"_id": 0})
 
-    users_list: list = []
-    for c in cursor:
-        users_list.append(c)
+        users_list: list = []
+        for c in cursor:
+            users_list.append(c)
 
-    cursor.close()
-    client.close()
-    context = {}
-    context["title"] = "User Management"
-    context["users"] = users_list
-    return render(request, "list_table.html", context)
+        cursor.close()
+        client.close()
+        context = {}
+        context["title"] = "User Management"
+        context["users"] = users_list
+        return render(request, "list_table.html", context)
+    except (e):
+        print(e)
+        return HTTPResponse("error", status=HTTPStatus.INTERNAL_SERVER_ERROR)
 
 
 def username_exists(username: str) -> bool:

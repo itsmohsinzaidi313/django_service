@@ -128,4 +128,3 @@ dmypy.json
 # Pyre type checker
 .pyre/
 user_management/static/
-user_management/templates/
