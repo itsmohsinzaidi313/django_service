@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+django_service/user_management/static
+django_service/user_management/templates
