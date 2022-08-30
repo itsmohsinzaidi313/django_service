@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6$_m@^ug$s8am^%xxnct1$37dau%n7@mt0#t75@31f+k7xk7$q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['18.223.23.61']
 
 
 # Application definition
@@ -73,7 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_service.wsgi.application'
 
-CONNECTION_STRING = 'mongodb://25.90.198.208:27017/'
+CONNECTION_STRING = 'mongodb://localhost:27017/'
 
 
 # Database
@@ -123,7 +123,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = '/static'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "user_management/static"),)
+STATICFILES_DIRS = [
+    BASE_DIR / 'user_management/static',
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
