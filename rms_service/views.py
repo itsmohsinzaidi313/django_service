@@ -33,6 +33,9 @@ def config(request: HttpRequest) -> HttpResponse:
                     if b["UniqueId"] == body["branchId"]:
                         document["Branches"].append(b)
                         # for s in body['systems']:
+                        #     for ss in b['Systems']:
+                        #         if(s['UniqueId'] == ss['UniqueId']):
+                                    
                             
 
                 data.append(document)

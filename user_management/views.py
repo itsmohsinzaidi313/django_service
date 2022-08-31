@@ -37,19 +37,6 @@ def users(request: HttpRequest) -> JsonResponse:
         return JsonResponse(status=HTTPStatus.BAD_REQUEST)
 
 
-def get_data(request: HttpRequest) -> JsonResponse:
-    client = utils.get_restaurant_db_client()
-    db = utils.get_restaurants_database(client)
-    collection = utils.get_restaurants_collection(db)
-    cursor = collection.find(projection={"_id": 0})
-    documents: list = []
-    for c in cursor:
-        documents.append(c)
-    return JsonResponse(
-        json.dumps(documents), content_type=CONTENT_TYPE, status=HTTPStatus.OK
-    )
-
-
 def view_users(request: WSGIRequest) -> HTTPResponse:
     e: BaseException
     try:

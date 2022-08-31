@@ -128,3 +128,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 user_management/static/
+django_service/settings.py
