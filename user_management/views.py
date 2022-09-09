@@ -38,7 +38,6 @@ def users(request: HttpRequest) -> JsonResponse:
 
 
 def view_users(request: WSGIRequest) -> HTTPResponse:
-    e: BaseException
     try:
         client = utils.get_restaurant_db_client()
         db = utils.get_restaurants_database(client)
@@ -55,7 +54,7 @@ def view_users(request: WSGIRequest) -> HTTPResponse:
         context["title"] = "User Management"
         context["users"] = users_list
         return render(request, "list_table.html", context)
-    except (e):
+    except Exception as e:
         print(e)
         return HTTPResponse("error", status=HTTPStatus.INTERNAL_SERVER_ERROR)
 
