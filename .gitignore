@@ -127,5 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-user_management/static/
+
+**static
 django_service/settings.py
+**web.config

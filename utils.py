@@ -2,7 +2,8 @@ import hashlib
 from http import client
 from pymongo import MongoClient, database
 from pymongo import cursor as crsr
-from django_service import settings
+from pymongo.collection import Collection
+from django_service.settings import CONNECTION_STRING
 
 
 def get_db_handle(db_name: str, host, port, username, password):
@@ -17,15 +18,15 @@ def get_db_handle(db_name: str, host, port, username, password):
 
 
 def get_restaurant_db_client() -> MongoClient:
-    return MongoClient(settings.CONNECTION_STRING)
+    return MongoClient(CONNECTION_STRING)
 
 
 def get_restaurants_database(client: MongoClient) -> database.Database:
     return client.get_database('Restaurants_db')
 
 
-def get_restaurants_collection(database: database.Database):
-    return database.get_collection('Restaurants')
+def get_restaurants_collection(database: database.Database) -> Collection:
+    return database.get_collection('Restaurants_testing')
 
 
 def get_users_collection(database: database.Database):
